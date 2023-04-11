@@ -1,0 +1,7 @@
+CMD
+
+	open : win+r 
+
+	systeminfo , ver , vol , date , time , d: (change drive), dir (all folders ls), cd movies (change dir), cd.. , mkdir newfolder, type nul > file.txt , ren file.txt renamed.txt,  
+	notepad file.txt, code file.txt, copy file1.txt file2.txt, del file.txt , move file.txt newfolder, cls (/clear) , rmdir newfolder, ping google.com ( server) , ipconfig/all ,
+	

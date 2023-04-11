@@ -1,0 +1,109 @@
+JAVASCRIPT:     emoji : Windows + .(full stop), or Windows + ; (semi-colon)
+
+	variables : var , let ( can't be declared twice) , const , 
+
+	data type : string , array, object, number , bool .........
+		array : ["vikas","sharma"]
+		object: { name:"vikas" , last_name:"sharma"]
+
+	document.write("hello <br>")
+	console.log("hello")
+	alert("hello")
+	confirm("Do you want to exit")   { ok -> true, cancel -> false  }
+ 	prompt("What is your name") 	
+
+	function hello(fname="vikas",lname="sharma){ ... }   , hello() (function with default value)
+
+	event : mouse ( click (onclick) , double click (ondbclick) , right click (oncontextmenu), mouse hover (onmouseenter), mouse out (onmouseout), mouse down (onmousedown), mouse up (onmouseup)
+		 : keyboard ( keypress (onkeypress), key up(onkeyup) 
+			document.addEventListener("keypress",(event)=>{ playAudio(event.key) })
+		 : web ( load (onload), unload (onunload), resize(onresize), scroll (onscroll) ) ( works on bode tag)
+	
+	addHtmltoJavascript : document.write("<ul>")  for(){ document.write("<li>" +  +  "</li>") }  document.write("</ul>") 
+	        document.write("<table border='1px' cellspacing='0'> ");
+
+	audio : var audio = new Audio("path"); audio.play();
+
+
+	array : var a=[10,20,30]; var arr= new Array(); for(var j=0;j<3;j++){ arr[j]=prompt("Enter value of array"); } , delete a[1] (a[1]=undefined),
+		: a.sort() , a.reverse(), a.pop(), a.push("vikas"), a.slice(start idx,end idx), a.shift() (delete from start) , a.unshift("hello") , a.join("-") (string of arr joined by - ), a.splice(index,howmany delete,"newvalue") (a.splice(1,0,"vikas") ( a.splice(1,1)  remove inbetween element) , c=a.concate(b,d) (c is combination of a,b,d);
+		: indexOf("search item",start), bool chk= a.includes("search item") , a.toString(); 
+
+	object : var a={ fname:"vikas", arr:["vik",18,"d"], fullname: function(){return this.fname+" sharma"} }; ( this.fname==a.fname, fullname is called method ) , 
+		: var obj = new Object(); for(var key in obj){document.write( obj[key] );} , var b=a.map( multi ) function multi(x){ return x*10};  
+
+	string method : var str="vikas Sharma";  str.length , str.toLowerCase(), str.replace("ik", "nh"); var a= str.split(" "), str.slice(1,6) str.slice(-1), str.substr(2), 
+
+	math method : var x=5.2, Math.floor(x) -> 5, max(x,y,z,w), Math.random()/pow(2,5)/sqrt(25)/abs(-23), math.ceil(x) -> 6, math.round(x) (nearest), 
+
+	date method :  var now = new Date() (Thu Jan 12 2023 00:27:45 GMT+0530 (India Standard Time)) , 
+			  :  now.getDate()/getMonth()/getDay()/getHours()/.... , setDate(23)/setHours(11)/.... 
+
+DOM : 
+	targetting method : document.getElementById("sidebar"), document.getElementByClassName("container")[0], document.getElementByTagName("h2")[1]; 
+	get method : document.getElementById("header").innerText ( "Website Name" ) , document.getElementById("header").innerHTML (  <h1>Website Name</h1> ), document.getElementById("header").getAttribute("class")  ( col col-md-4) / .getAttribute("onClick") ( xyz() )/ .getAttributeNode("onClick") ( onClick="xyz() ) , 
+	set method : document.getElementById("header").innerHTML= "<h1>My Site</h1>" / innerText ( changes only text) , document.getElementById("header").setAttribute("style","border: 5px solid yellow") / .removeAttribute("style") , 
+
+	New targetting method : document.querySelectorAll("#header h2")[0].innerHTML="<h2>This is My Site</h2>", 
+
+	CSS Style method : document.querySelectorAll("#header")[0].classList.add("abc","xyz") / .remove("abc") ;, document.querySelectorAll("#header")[0].className="abc xyz" ( add class) , document.querySelectorAll("#header")[0].style.backgroundColor="green"; 
+	
+	addEventListener : document.querySelectorAll("#header")[0].addEventListener("click",abc)
+						function abc(){ this.style.backgroundColor="yellow"; }
+			        document.querySelectorAll("#header")[0].addEventListener("mouseenter",function(){this.style.border="10px solid black";} )
+
+	setAttribute : document.querySelectorAll("img")[0].setAttribute("src","/images/dice" +  a + ".png");
+				document.querySelectorAll("img")[0].src="/images/dice" +  a + ".png";
+				document.getElementsByClassName("img")[0].src="/images/dice" +  a + ".png";
+
+	removeEventListener : document.getElementById("header").addEventListener("mouseleave",function() { this.removeEventListener("click",abc);});
+
+	classList : function animate(key){document.getElementsByClassName(key)[0].classList.add("pressed");}
+			  document.getElementById("header").addEventListener("mouseenter", function(){this.classList.add("coloring");});
+			   document.getElementById("header").addEventListener("click", function(){this.classList.remove("coloring");} );
+			  document.getElementById("header").addEventListener("click", function(){this.classList.toggle("xyz");} );
+			  ... .                    ...              ...           .....           . . .         .contains("find a class");  .. ..
+
+
+	add event using DOM : document.getElementById("header").onclick = abc;
+						function abc(){ this.style.backgroundColor="yellow"; }
+
+	parent : document.getElementById("listItem").parentElement.style.backgroundColor="purple";
+	children : document.getElementById("list").children[0].style.backgroundColor="purple";
+
+	insertElement : document.getElementById("header").insertAdjacentHTML( "afterbegin","<h2>This is heading</h2>"); ( beforebegin, afterbegin, beforeend, afterend)
+	
+	append child : var newEle = document.createElement("h2"); var newTxt = document.createTextNode("Second Heading"); newEle.append(newTxt); 
+				document.getElementById("header").appendChild(newEle);
+				document.getElementById("header").insertBefore(newEle,document.getElementById("header").childNodes[0]);
+	replace/remove child : document.getElementById("list").replaceChild(newele, document.getElementById("list").children[0]);
+				document.getElementById("list").removeChild(document.getElementById("list").children[1]);
+	
+	clone element : var copiedelement= document.getElementById("list").children[0].cloneNode(true);
+					document.getElementById("list2").appendChild(copiedelement); 
+
+	Find : var find= document.getElementById("content").contains(document.getElementById("list"));  ( true/false)
+		:       .hasAttribute("href") , 
+	compare : var compare = target1.isEqualNode(target2)
+
+
+ 
+	Form : input : onfocus : document.getElementById("fname").addEventListener("focus",function(){this.style.backgroundColor="cyan";})
+			   : onblur : ..                                                  "blur"                       backgroundColor="";})
+
+				<div id="yourtxt"></div>
+			   : oninput : (input)-> id="fname" oninput="inputfn(this)" (script)-> function inputfn(element){document.getElementById("yourtxt").innerHTML=(element.value);} 
+			   : onchange : <select name="" id="selection" onchange="changefn(this)"> (script) function changefn(element){document.getElementById("yourtxt").innerHTML=(element.value);}
+
+			    <form onsubmit="submitfn()"> -> <button type="submit">Submit</button>
+			   : onsubmit : function submitfn(){alert("Do you want to Submit")};
+					    : function submitfn(){alert(document.getElementById("fname").value)};
+			   : required : <input type="text" required>
+
+	setInterval (functionName,milisecond) { this fn repeats in every given second} 
+			: setInterval( ()=> {document.getElementById("test").style.marginLeft = a+'px'; a=a+10;} ,1000 ) 
+	clearInterval : var id=setInterval(anim,100); clearInterval(id);
+
+	setTimeout(functionName,milisecond) : 	setTimeout( ()=>{ document.getElementsByClassName(key)[0].classList.remove("pressed") } ,100)
+									setTimeout(anim,3000); function anim(){console.log("hello");}
+	clearTimeout: var id=setTimeout(anim,100); clearTimeout(id);

@@ -1,0 +1,136 @@
+
+LINK : 
+
+FONT AWESOME
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+
+BOOTSTRAP
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+TO USE DROPDOWN
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
+
+IMAGE : 
+	src="https://source.unsplash.com/random/300x201"
+	zx	<img width="30px" height="30px" >
+
+
+
+Bootstrap :
+
+	row, col, col-6, col-md-6, row-col-2, col order-5,  
+
+	padding & margin : col offset-md-3 (margin), m-auto (margin), p-auto (padding), px-0.5(padding x axis), py-1.5, mx-2, my-3,
+	remove padding : no-gutters,
+	
+	horizontal alignment :row justify-content-around ,
+
+	vertical alignment: row align-item-center, row align-content-start, col align-self-start,
+	
+	flex direction : row flex-row-reverse, row flex-column-reverse, row flex-wrap, col flex-fill
+
+	display utility : d-inline, d-block, d-none (hide), d-print-none (hide at print), d-none d-print-block (only show at print), 
+	
+	float and clearfix : float-md-left, 
+
+	width : w-25 (25%width), mw-50 (maximum width 50%), vw-75 (viewport width 75%) 
+	height : similar to width, vh-75, min-vh-25,
+
+	position : fixed top, fixed bottom, sticky bottom/top, float right/left
+	clearfix : clear floated content within container
+
+	overflow : overflow-auto (shows a scroll bar for extra content), overflow-hidden(hide extra),
+ 	
+
+	background color : bg-primary , bg-transparent, 
+
+	text color : text-primary , text-primary-50 (50% transparent)
+
+	text align : text-center, text-justify, text-md-left
+
+	text transform : text-uppercase, text-capitalize
+
+	font-weight : font-weight-bold
+
+	anchor tag : text-decoration-none,
+
+	wrapping : text-nowrap, text-truncate, text-break,
+
+	font size : lead , diaplay-1,
+
+	list style : list-unstyled, (ul) list-inline  -> (li) list-inline-item,
+
+	blockQuote : (blockquote) blockquote -> (footer) blockquote-footer,
+
+	user select : user-select-all, user-select-none,
+
+	button : btn btn-primary, btn btn-outline-primary, btn btn-lg, btn btn-block (cover whole width), btn active, btn disabled, 
+
+	group button : (div) btn-group,(div) btn-toolbar, (div) btn-toolbar-vertical, 
+
+	list group : (ul) list-group -> (li) list-group-item, (li) list-group-item-primary, (ul) list-group-horizontal (- md/sm/lg), list-group-flush (remove outer border)
+	list group with link : (div) list-group -> (a) list-group-item list-group-item-action,
+	 
+	table : (table) table table-dark table-borderless, table table-striped, (thead) thead-dark, table table-bordered table-hover,
+	tr/td : (tr) table-primary, (tr) bg-primary,
+	table responsive : (div) table-responsive,
+
+	pagination : (nav) -> (ul) pagination -> (li) page-item -> (a) page-link (active), (ul) pagination-lg justify-content-center,
+
+	breadcrumb : (nav) -> (ol) breadcrumb -> (li) breadcrumb-item -> (a) , (li) breadcrumb-item active (no anchor tag)
+
+	form : (div) form-group -> (input) form-control , (small) form-text text-muted , (input file) form-control-file, (Input) form-control-range, (div) form-check -> (input) form-check-input -> (label) form-check-label
+
+	inline form : (form) row -> (div) col-md-4 -> (input) form-contol ,
+	inline checkbox -> (div) row -> (div) col -> (div) form-check form-check-inline -> (nput) form-check-input -> (label) form-check-label,
+
+	input group : (div) input-group -> (div) input-group-prepend/append -> (span) input-group-text (/div) -> (input) form-coltrol,
+
+	nav : (ul) nav -> (li) nav-item -> (a) nav-link,
+	nav : (nav) nav justify-content-end -> (a) nav-link,    
+			nav-pills (for rounded corners)
+
+	navbar : (nav) navbar navbar-expand-md navbar-light bg-light -> (a) navbar-brand (/a), (ul) navbar-nav -> (li) nav-item -> (a) nav-link
+	dropdown : (li) nav-item dropdown -> (a) navbar-link dropdown-toggle  data-toggle="dropdown" -> (div) dropdown-menu -> (a) dropdown-item
+	nav hide/show button : (button) navbar-toggler data-toggle="collapse" data-target="#mynavbar" -> (span) navbar-toggler-icon </span> </button> , (div) collapse navbar-collapse id="mynavbar"  
+	inshort : nav -> button -> div -> ul -> li -> a
+
+	image : (img) img-fluid (responsiveness) , img-thumbnail (frame) , rounded, rounded-left, rounded-circle, rounded-pill
+	figure (image with some message) : (figure) figure -> (img) img-fluid figure-img -> (figcaption) figure-caption
+
+	video : (div) embed-responsive embed-responsive-16by9 -> (iframe) embed-responsive-item
+
+	border: border border-primary , border-top-0 (remove), 
+
+	shadow : shadow , shadow-lg, shadow-none, 
+
+	card : (div) card -> (div) card-img-top (/div) (div) card-body -> (h4) card-title (p) card-text 
+	card (with text on image) : replace card-body -> card-img-overlay,
+  	card: (h5) card-subtitle , card-heading ,(a) card-link (like read more), card-footer
+	horizontal card : (div) card -> row -> (col-md-4) card-img (col-md-8) card-title & card-text,
+
+	card group : (div) card-group (without padding) -> .......    
+	card deck : (div) card-deck (with some padding) -> .......
+ 	card column : (div) card-columns (masonry layout)
+
+	media : (div) media -> img & (div) media-body , align-self-center, nested media also available
+	
+	progress : (div) progress -> progress-bar style="width: 25%;" -> label 
+	progress style ; progress height: 100px; , progress-bar-striped, progress-bar-animated , bg-primary 
+
+	spinner : spinner-border , spinner-grow 
+
+	tab plugin : (ul) nav nav-tab -> (li) nav-item -> <a href="#home" class="nav-link" data-toggle="tab">Home</a> 
+			   (div) tab-content -> (div) tab-pane id="home" -> (p) .............
+
+	badge : (span) badge badge-primary badge-pill , (button) btn btn-primary (Notification) -> (span) badge badge-light (5), (a) badge badge-primary (read more)
+
+	jumbotron : (div) jumbotron/jumbotron-fluid -> (heading , paragrph, button)
+
+	alert : (div) alert alert-primary -> (p) -> (button) class="close" data-dismiss="alert" (x) ( &times; )  ,
+
+	

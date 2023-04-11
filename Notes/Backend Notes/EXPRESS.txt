@@ -1,0 +1,99 @@
+Express :  ctrl f  -> search something on webpage(documentation)
+
+	download and install node js : https://nodejs.org/en/  (npm automatically installed with nodejs)
+	
+	check : node -v   and   npm -v   nodemon -v
+	npm init -y
+	npm install express
+
+	
+	express : get method : read  -> when you search localhost:3000 browser sends get request to server ( i.e browser wants to get some data from server so we use app.get() )
+			post method : create -> send data to server ( eg. using method="post" in form tag)
+			put : update , delete : delet
+
+
+	import express from 'express'    
+	const app = express();
+
+	app.get("/",(req,res)=>{
+    		res.send("Express is ready");
+	})
+     app.get("/about",(req,res)=>{
+         res.send("About us page")
+     })
+	app.listen(4000,()=>{
+    		console.log("app started");
+	})
+
+
+	Send Html :    const express = require("express");
+                    const app = express();
+                    const port =3000;
+
+                    app.get("/", (req,res)=>{
+                        res.sendFile(__dirname+"/index.html");
+                    })
+
+                    app.listen(port,()=>{
+                        console.log(`server started on port : ${port}`)
+                    })
+
+
+
+	Get data from html :    action="/" method="post"    this should be in html
+					  npm i body-parser
+					  app.use(bodyParser.urlencoded({extended: true}));  ( .urlencoded -> to use html data ,   extended: true -> allow to post nested objects)
+
+					 
+                    const express = require("express");
+                    const bodyParser = require("body-parser");
+
+                    const app = express();
+                    app.use(bodyParser.urlencoded({extended: true}));
+
+                    app.get("/", (req,res)=>{
+                        res.sendFile(__dirname+"/index.html");
+                    })
+
+                    app.post("/",(req,res)=>{ 
+                        var n1 = Number(req.body.num1);                 ( console.log(req.body)   -> to debug )
+                        var n2 = Number(req.body.num2);
+                        var result = n1+n2;
+                        
+                        res.send("The result is : "+ result);
+                    })
+
+                    app.listen(3000,()=>{
+                        console.log("server started");
+                    })
+			    
+	
+
+
+	EJS (template engine) : for dynamic websites , dynamic data
+
+
+	serve html/css :   import express from 'express'
+                        import path from 'path' 
+                        import { fileURLToPath } from 'url';
+
+                        const app = express();
+
+                        const __filename = fileURLToPath(import.meta.url);
+                        const __dirname = path.dirname(__filename);
+                        const staticPath = path.join(__dirname,"../public" );     ( automatically get index.html from public folder) express folder -> public and src;
+																 html path -> public\index.html
+                        app.use(express.static(staticPath))					 css -> public\css\style.css
+																 index.js -> src\index.js
+                        app.listen(4000,()=>{
+                            console.log("app started");
+                        })
+
+	dynamic routing :  app.get('/:id', function(req, res){
+                          console.log(req.params);
+                          res.send('The id you specified is ' + req.params.id);
+                        });
+	
+	
+
+	

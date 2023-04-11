@@ -1,0 +1,39 @@
+EJS : EMBEDDED JAVASCRIPT TEMPLATING   ctrl+j hide terminal
+
+	npm i ejs
+	app.use("view engine","ejs");
+
+	to use ejs make a folder named views
+		views -> index.ejs   this is where view engine automatically goes
+		index.ejs is quite similar to html
+
+	Date object :  var today = new Date();
+
+	marker : <%= kindOfDay %>     ( use it in .ejs where you want changes )
+
+	res.render("list",{kindOfDay : "weekday" });         res.render( filename, object (key-value pair ));    ( sendfile replaced as render )
+
+	<button type="submit" name="button" value="remove">+</button>
+				
+			type (submit ) : triger post req to given route 
+			name value : this is key value pair (object ) sent to app.js i.e { button: 'remove' }
+
+	include external files : <%- include("header") %>
+	
+	formate javascript date : toLocaleString() is a built-in JavaScript function that formats date and time in DD/MM/YYYY and time as hour:minute: second format.
+						 
+						 var day =today.toLocaleDateString("en-US", {weekday: "short", day: "numeric", month: "long"}); -> Wed, January 25	
+
+	change days using array : var days = ["sunday","monday","tuesday","wednesday","thursday","friday","saturday"]; 
+						 day = days[today.getDay()];
+
+	run code inside .ejs :  use <% code %>
+			                 
+					   <% if(kindOfDay=="saturday" || kindOfDay=="sunday"){ %>
+                                <h1 style="color: green;"> <%= kindOfDay %> To Do list </h1>
+                            <% } else {  %>
+                                <h1 style="color: red;"> <%= kindOfDay %> To Do list </h1>
+                            <% }   %>
+
+	get data from app.js to home.ejs : <p> <%= startingContent %> </p>     ( <%= val %>  -> output the value in HTML )
+	console.log in .ejs :    <% console.log(posts) %>         ( dont use <% console.log(<%= posts %>) %> )

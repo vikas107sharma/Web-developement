@@ -1,0 +1,67 @@
+ CLIENT SIDE :
+
+
+ const [listOfUsers, setListOfUsers] = useState([
+    {
+      id: 1,
+      name: "Pedro",
+      age: 20,
+      username: "Pedro123",
+    },
+  ]);
+
+  const [name, setName] = useState("");
+  const [age, setAge] = useState(0);
+  const [username, setUsername] = useState("");
+
+///////////////////////////////////////// GET ///////////////////////////////////////////////////////////////////
+
+  useEffect(() => {
+    Axios.get("http://localhost:3001/getUsers").then((response) => {
+      setListOfUsers(response.data);
+    });
+  }, []);
+
+/////////////////////////////////////// POST ///////////////////////////////////////////////////////////////////
+
+  const createUser = () => {
+    Axios.post("http://localhost:3001/createUsers", {
+      name: name,
+      age: age,
+      username: username,
+    }).then((response) => {
+      alert("User created");
+    });
+  };
+
+/////////////////////////////////////// DELETE ///////////////////////////////////////////////////////////////////
+
+  const deleteUser = (id) => {
+    console.log(id);
+    Axios.delete(`http://localhost:3001/deleteUsers/${id}`);
+  };
+
+
+
+
+
+ SERVER SIDE :
+	
+app.get("/getUsers", (req, res) => {
+  UserModel.find({}).then((users) => {
+    res.send(users);
+  });
+});
+
+app.post("/createUsers",(req,res)=>{
+  const user = req.body;
+  const newUser = new UserModel(user).save();
+  res.send("Posted")
+})
+
+app.delete("/deleteUsers/:id",(req,res)=>{
+  const id = req.params.id;
+  UserModel.findByIdAndDelete(id).then(user=>{
+    console.log(user);
+  })
+})

@@ -1,0 +1,46 @@
+HTML: 
+
+	align="center"  bgcolor="orange" 
+
+	sup : 12 <sup>th</sup> , H <sub>2</sub> O ,
+ 
+	list : ul ( type="circle" ), ol ( type="1" ) ,
+
+	marquee : behavior="alternate" ( slide , scroll)  scrollamount="2" direction="right"
+
+	table :  thead -> (th) tbody (td) tfoot (td)  ,  border="1" cellpadding="20px"  ,  (td) colspan="2" (merge two column), rowspan="2"
+
+	iFrame : align="left" frameborder="0" width="500px" 
+
+	image : src="" width="" alt="" title="title show on hovering image"
+
+	video/audio : control loop muted autoplay width="" -> (source src="video/newvideo.mp4" type"video/mp4")  ( source src="audio/newaudio.mp3" type="mpeg" )
+
+	a : href="index2.html" (go to another webpage) , (a) href="#bottom"  then at last (a) name="bottom" , href="mailto:ABC@gmail.com" or href="mailto:ABC@gmail.com?subject=hello world&body=This is just text"
+
+	form : fieldset (border) -> legend (form name)
+
+		: (input) type="text" value="pre written text" 
+		
+		: (input) type="radio" name="fruits" id="mango" ( label for="mango") mango  { ( id ) clickable label , (name) single select } (input) type="radio" name="fruits" id="apple" ( label for="apple") apple	
+		 															
+		: (textarea) rows="" cols="" , (text) name="fname" value="some pre typed text" placeholder="some muted instruction"	
+		
+		: select size="3" (shows 3 options) multiple (hold ctrl for multiple selection) -> option , select -> <optgroup label="mercedes" /> -> option
+		
+		: (input) list="cars" then (datalist) id="cars" -> (option) value="mercedes" (option) value="ferari" .......
+
+		: (input) file accept="image/*" (only upload image file of any formate jpg, png ) 
+
+		: (input) type="submit" (/ button/ reset)  value="This will show on button"
+	
+		: (input) type="image" (also use as button)
+
+	hr : width="" align="" size="" color=""
+
+	pre : (show as it is & used to show codes)
+
+	
+	
+ 	
+	

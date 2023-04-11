@@ -1,0 +1,243 @@
+updates : then nhi lgaye to sirf query return hogi
+
+1. 
+        Article.insertMany(items).then(()=>{
+            res.send("Successfully posted.")
+        }).catch((err)=>{
+            console.log(err)
+        })
+
+2. 
+ 	  Article.deleteMany().then(()=>{
+            res.send('Deleted all items')
+        })
+
+
+
+const express = require("express");
+const bodyParser = require("body-parser");
+const ejs = require("ejs")
+const mongoose = require("mongoose");
+
+const app = express();
+
+app.set('view engine', 'ejs');
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static("public"));
+
+mongoose.connect('mongodb://127.0.0.1:27017/wikiDB');
+mongoose.set('strictQuery', true);
+mongoose.connection.on('connected', () => console.log('Connected'));
+mongoose.connection.on('error', () => console.log('Connection failed with - ', err));
+
+const articleSchema = new mongoose.Schema({
+    title: "String",
+    content: "String"
+})
+
+const Article = mongoose.model("Article", articleSchema);
+
+// app.route().get().post().delete();   -> semicolon at end
+
+//////////////////////// REQUEST TARGETING ALL THE ARTICLES ////////////////////////////////////////////////////////////////////
+
+note: if you are sending data as POST req from thunderclient and using form-encoded then include
+	const bodyParser = require("body-parser");
+	app.use(bodyParser.urlencoded({ extended: true })); 
+	in app.js
+
+	no need to use body-parser if post req is sending data as json just add
+	app.use(express.json());
+
+
+app.route('/articles')
+    .get((req,res)=>{
+        Article.find({}).then((article)=>{
+            res.send(article);
+        })
+    })
+    .post((req,res)=>{
+        const newArticle = new Article({
+            title: req.body.title,
+            content: req.body.content
+        }).save();
+        res.send("Successfully posted.")
+
+    })
+    .delete((req,res)=>{
+        Article.deleteMany().then(()=>{
+            res.send('Deleted all items')
+        })
+    });
+
+//////////////////////// REQUEST TARGETING SPECIFIC ARTICLES ////////////////////////////////////////////////////////////////////
+
+app.route("/articles/:articleTitle")
+   
+    .get((req,res)=>{
+        Article.findOne({title : req.params.articleTitle}).then((foundArticle)=>{
+            res.send(foundArticle)
+        })
+    })
+
+    .put((req,res)=>{
+        Article.updateOne({title : req.params.articleTitle},{title : req.body.title , content : req.body.content})
+        .then(()=>{
+            res.send("Successfully updated article.");
+        })  
+    })
+
+    .patch((req,res)=>{
+        Article.updateOne({title : req.params.articleTitle},{$set : req.body})
+        .then(()=>{
+            res.send("Successfully updated a value");
+        })
+    })
+    
+    .delete(function(req, res){
+        Article.deleteOne( {title: req.params.articleTitle}).then(()=>{
+            res.send("Successfully deleted");
+        })
+    });
+
+app.listen("3000", function () {
+    console.log("Server started on port 3000");
+})
+
+
+
+
+
+REST API :
+
+
+const express = require("express");
+const bodyParser = require("body-parser");
+const ejs = require("ejs")
+const mongoose = require("mongoose");
+
+const app = express();
+
+app.set('view engine', 'ejs');
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static("public"));
+
+mongoose.connect('mongodb://localhost:27017/wikiDB');
+mongoose.set('strictQuery', true);
+mongoose.connection.on('connected', () => console.log('Connected'));
+mongoose.connection.on('error', () => console.log('Connection failed with - ', err));
+
+const articleSchema = new mongoose.Schema({
+    title: "String",
+    content: "String"
+})
+
+const Article = mongoose.model("Article", articleSchema);
+
+// app.route().get().post().delete();   -> semicolon at end
+
+//////////////////////// REQUEST TARGETING ALL THE ARTICLES ////////////////////////////////////////////////////////////////////
+
+app.route("/articles")
+
+    .get(function (req, res) {
+        Article.find({}, function (err, foundArticles) {
+            if (!err) {
+                res.send(foundArticles);
+            } else {
+                res.send(err);
+            }
+        })
+    })
+
+    .post(function (req, res) {
+
+        const newArticle = new Article({
+            title: req.body.title,
+            content: req.body.content
+        })
+        newArticle.save();
+        res.send("Successfully posted.")
+    })
+
+    .delete(function (req, res) {
+
+        Article.deleteMany(function (err) {
+            if (!err) {
+                res.send("Successfuly deleted all the documents");
+            } else {
+                res.send(err);
+            }
+        })
+    });
+
+//////////////////////// REQUEST TARGETING SPECIFIC ARTICLES ////////////////////////////////////////////////////////////////////
+
+app.route("/articles/:articleTitle")
+
+.get(function(req, res){
+
+    Article.findOne({title : req.params.articleTitle}, function(err, foundArticle){
+        if(foundArticle){
+            res.send(foundArticle);
+        } else {
+            res.send("No document found");
+        }
+    })
+})
+
+.put(function(req,res){
+    Article.updateOne(
+        {title : req.params.articleTitle},
+        {title : req.body.title , content : req.body.content},
+        function(err){
+            if(!err){
+                res.send("Successfully updated article.");
+            } else {
+                res.send(err);
+            }
+        }
+    )
+})
+
+.patch(function(req,res){
+
+    Article.updateOne(
+        {title : req.params.articleTitle},
+        {$set : req.body},
+        function(err){
+            if(!err){
+                res.send("Successfully updated a value");
+            } else {
+                res.send(err);
+            }
+        }
+    )
+})
+
+.delete(function(req, res){
+
+    Article.deleteOne(
+        {title: req.params.articleTitle},
+        function(err){
+            if(!err){
+                res.send("Successfully deleted");
+            } else {
+                res.send(err);
+            }
+        }
+    )
+});
+
+app.listen("3000", function () {
+    console.log("Server started on port 3000");
+})
+
+
+
+
+
+
+
+https://www.bing.com/search?q=html+urlencode+w3schools&form=ANSPH1&refig=2211161540684957b13c9a790b133a64&pc=U531
+space	%20

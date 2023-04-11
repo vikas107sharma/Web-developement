@@ -1,0 +1,73 @@
+API : ctrl+ ` to open terminal in vs code
+
+	An application programming protocall is a set of commands, functions, protocalls, and objects that programmers can use to create softwares or interact with an external system.
+	Your server -> api -> Someone else's server 
+	add : JSON Viewer Pro
+
+	endpoints : 	https://api.kanye.rest
+	paths : 		https://v2.jokeapi.dev/joke/Programming     ( /Programming -> path)
+	parameter :    https://v2.jokeapi.dev/joke/Programming?blacklistFlags=political&contains=debugging   ( ?blacklistFlags=political&contains=debugging  -> parameter )
+ 	authentication : appid=c8142c264d33a2529ac4505376525aee
+
+
+OPENWEATHER : 
+
+	open weather api -> get my api key -> exapmle -> https://api.openweathermap.org/data/2.5/weather?q=London&appid={API key}
+			url	: https://api.openweathermap.org/data/2.5/weather?q=London&units=metric&appid=c8142c264d33a2529ac4505376525aee
+
+	get data from other server :  https.get(url, (response) => {                               // our server send request/response to api url server 
+                            			response.on("data",(data)=>{                             // if(we get 'data' on response, function(data)call)
+                                			const weatherData = JSON.parse(data);                // parse JSON to object , opposite is JSON.stringify(data);
+                            				const temp = weatherData.main.temp                  //  .main.temp -> get this path from JSON viewer
+								})
+                        			});
+	
+	use image from api :   const icon = weatherData.weather[0].icon
+                            const imageUrl = "http://openweathermap.org/img/wn/"+ icon +"@2x.png"
+                            res.write("<img src=" + imageUrl + " >")
+
+	
+NEWSLETTER :
+
+	use static files from storage (make dir public (folder) and put html css images into this ) : 
+					
+					   app.use(express.static("public"));
+	                       app.get("/",(req,res)=>{
+                                res.sendFile(__dirname+"/public/index.html");
+                            })	
+																		    
+	to get data from post req :  app.use(bodyParser.urlencoded({extended: true}))
+
+		                  app.post("/",(req,res)=>{
+                                const firstName = req.body.fName
+                            })
+
+	console.log multiple var : console.log(firstName,lastName,email);
+	undefined in console : when there is typo error like fname (html)  fName (app.js)
+
+
+   MAILCHIMP:
+
+	mailchilp api : mailchimp.com -> vikas-> accounts and billing -> extras -> api key
+	api key mailchimp  ->  a7ed8565fd5f0683590b77d16ff25807-us12
+	
+	unique/list id : mailchimp.com -> audience -> manage audience -> settings 
+	unique id  ->  841b32c7fc
+
+	const url = "https://us12.api.mailchimp.com/3.0/lists/841b32c7fc"
+
+   			   https://us12.api.mailchimp.com/3.0/lists/{list_id}    The us12 part of the URL corresponds to the data center for your account.
+                                             		    			  It’s the first part of the URL you see in the API keys section (us-12)
+
+	at failure redirect to home route :  form -> method="post" action"/failure"
+
+                    app.post("/failure",(req,res)=>{
+                        res.redirect("/");
+                    })
+
+   HEROKU : download -> https://devcenter.heroku.com/articles/getting-started-with-nodejs#set-up
+
+		 heroku --version
+
+		 git init -> git add . -> git commit -m "first commit"
+	

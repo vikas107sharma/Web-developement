@@ -1,0 +1,107 @@
+MONGODB :      install mongodb and mongoshell
+			put mongoshell in c drive C:\
+			make folder data -> db
+			add path in "environment variable" -> "use variables for vikas"
+
+	C:\Program Files\MongoDB\Server\6.0\data\
+
+	start mongo : (cmd)   mongod
+
+
+start shell : ( another cmd )  mongosh
+
+				  run in cmd
+	
+
+  CREATE:
+
+   	to see commands : help
+
+	show database : show dbs
+
+	create database : use shopDBS   ( you can switch/navigate also )
+
+	create collection : db.collection.insertOne()
+					db.products.insertOne({_id: 1, name:"Pen", price:1.20})     if products collection not exist then it will create a new one
+
+	show collections : show collections
+
+	show curr database : db
+
+  READ :  
+
+	show our filled documents :    db.collection.find( query, projection )       show all
+
+						 db.products.find({name:"Pencil"})       find with query
+		
+						 db.products.find({price: {$gt:1}})     gt -> greater than
+
+						 db.products.find( {_id:{$lt:3}} ,{_id:0,name:1})        name is true i.e 1 ->  shows only name of data whose id is less than 3
+
+						
+TO NAVIGATE ALREADY STORED DATA : use shopDBS  -> db.products.find()	
+					
+  
+  UPDATE :     db.collection.updateOne()
+
+			db.products.updateOne({_id:1}, {$set : {stock:32}} )       ( use the “$set” key and provide the fields )
+	
+  DELETE :     db.collection.deleteOne()
+
+		     db.products.deleteOne({_id:2})
+
+  DELETE DATABASE : switch to database  : use shopDB 
+								  db.dropDatabase()
+
+	
+insert a new product rubber which has reviews section also
+CREATE, WRITE ON MONGODB ONLINE COMPILER AND PASTE IT IN CMD
+
+		 db.products.insert(
+               {
+                _id: 2,
+                name: 'Pencil',
+                price: 0.8,
+                stock: 12,
+                reviews: [
+                  { authorName: 'Vikas', rating: 5, review: 'Very good product' },
+                  { authorName: 'Aryan', rating: 5, review: 'Nice product' }
+                ]
+              }
+            )     
+
+		 db.products.insert(
+              {
+                _id:3,
+                name: 'Rubber',
+                price: 1.50,
+                stock: 43,
+                reiews: [
+                    {
+                      authorName:'Sally',
+                      rating: 5,
+                      review: 'Best rubber ever'
+                    },
+                    {
+                      authorName:'John',
+                      rating: 5,
+                      review: 'Awesome rubber'
+                    }
+                  ]
+              }
+            ) 
+	
+	
+MONGODB WITH NODEJS :
+
+	READ DOCS : https://www.mongodb.com/docs/drivers/node/current/quick-start/
+
+	npm init -y
+	npm install mongodb
+
+	const uri = "mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+1.6.2";
+
+
+	
+	
+								

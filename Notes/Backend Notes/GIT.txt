@@ -1,0 +1,94 @@
+GIT :
+
+
+   LOCAL IMPLEMENTATION OF GIT 
+	SAVING THESE VERSIONS ON COMPUTER LOCALLY
+
+	mkdir : 
+	type nul > chapter1.txt  : 
+	nodepad cahpter1.txt  :  open file
+
+	START TRACKING USING GIT
+
+	git init : initialise empty git
+		ls -a : to see all including .git hidden files
+		git status : see staged/untracked files
+
+	git add . : add to staging area and ready to commit
+
+	git commit -m "Complete Chapter 1"  : always add message
+
+	git log :   shows all commit logs
+		type nul > chapter2.txt
+		type nul > chapter3.txt
+	
+	git add . 
+	
+	git commit -m "chapter 2 and 3"
+		make some changes in chapter3
+	
+	git diff chapter3.txt  : shows the difference btween current and previous
+
+	git checkout <comitId> : roll back to that commit;
+
+	git checkout chapter3.txt : roll back to previous text
+
+	
+
+   CREATE REPOSITORY ON GITHUB and upload current dir on github
+	
+	HEAD TO SAME PATH i.e vikas@Vikas MINGW64 /d/office/skills/website/backend/Story
+	
+     CREATE A REMOTE REPOSITORY CALLED ORIGIN
+		git remote add origin https://github.com/vikas107sharma/Story.git           ( url of repository)
+
+	NOW PUSH TO REPOSITORY
+		git push -u origin master      ( origin -> neme of remote , master -> name of branch )
+
+
+	
+   GITIGNORE :
+	type nul > .gitignore
+	now write name of files in new line in .gitignore to ignore i.e secrets.txt
+													    passwords.txt
+													    apiKeys.txt
+ 
+   remove from staging area ;
+	rm -rf .git : undo git init
+	git reset  : unstage all files
+	git rm –cached file.txt   : ustage particular file
+	git rm -r --cached .
+
+
+  CLONE :
+
+	git clone https://github.com/github/austinzheng/swift-2048.git
+
+  BRANCHING AND MERGING :
+
+	git branch alien-plot :	git branch (name of branch)
+
+	git branch : to see all branches
+
+	currently is in master branch
+	SWITCH BRANCH
+	git checkout alien-plot : Switched to branch 'alien-plot'
+		git add .
+		git commit -m "modify chapter 1 and 2 to have alien theme"
+
+	MERGE CHANGES:
+		git checkout master
+		git merge alien-plot
+
+
+
+
+
+
+
+
+
+	git checkout -f                         // restore previous changes of all files in that folder
+	git commit -a -m “skipped staging part”    to skip staging part
+	git rm –cached file.txt                // remove from staging area
+	git rm file.txt                               // remove file

@@ -1,0 +1,65 @@
+jQUERY :
+	
+	CDN : <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+
+	jQueryfn : $(function(){    ........       })
+
+document.querySelector = $
+
+
+addClass : $("button").addClass("pressed coloring")
+text : $("h1").text("chandged")
+html : $("h1").html("<h2>heading</h2>")
+
+getting : $("h1").css("color")
+setting : $("h1").css("color","red")
+
+	target : id -> $("#idname"),  class-> $(".classname"),  tag-> $("tagname"),  $(".abc,.xyz"),  $("h1,div,p"),  $("ul li")
+
+	mouse events : $("#box").click(function(){$("#box").css("background-color","red");})  use $(this)  ( /dbclick /contextmenu (right click) /mouseenter /mouseleave)
+
+	keyboard event : $("body").keypress(function(){$("#box").css("background-color","red");})  $("body").keyup(function(){$("#box").css("background-color","green");}) ( /keyup (works after leaving key, used withkeypress) /keydown ) 
+
+	form event : $("#fname").focus(function(){ $(this).css("background-color","red");}) $("#select").change(function(){ $("#test").html($(this).val());}); ( /blur /submit ) 
+
+	get : $("#test").html(); ( /text() /attr("class") ), <form id="sub"> $("#sub").submit(function(){ alert($("#fname").val()); })
+
+	set method : $("#box h4").html("<h1>Success</h1>");  $("#box p").text("seccessful"); $("#box").attr("class","coloring");  $("#fname").val("firstName")
+
+	addClass : $("#box,#sub").toggleClass("coloring sizing"); ( /addClass /removeClass)
+
+	on/off method : $("#box").on({ click:function(){ },  mouseenter : function(){} }), $("#box").off("click mouseenter"), 
+
+	append/prepend and after/before div: $("#box").prepend("<h2>Vikas</h2>"); $("#box").after("<h2>Vikas</h2>");
+	remove/empty ; $("#box").remove(); ( /empty -> remove text only tags exist);
+	
+	clone : var a=$("#box h4").clone();  $("#test").append(a);
+	replace : $("#box #p").replaceWith("<p>New paragraph</p>")
+	scroll : <div id="test" style="bottom: 5px; position: fixed;"></div>  (script) $(window).scroll(function(){  $("#test").html("");  $("#test").append($(window).scrollTop() + "<br>"); })
+
+	hasClass() : .hasClass() ( -> true /false ) ,
+
+	hide/show : $("#btn").click(function(){ $("#box p").toggle(); }) ( /hide /show) ,  $("#box p").fadeToggle("slow"); $("#box p").slideToggle("slow"); ( "slow" replace 1000)   ( display:none );
+	
+	animate : div id="test" style="position: relative;"></div> 
+					$("#btn").click(function(){ $("#test").animate({left: "+=100px", width: "toggle" }, 2000)  (single step)
+				  or	$("#btn").click(function(){ $("#test").animate({left: "+=100px"}); $("#test").animate({ height: "+=20px" }) })
+			stop : $("#test").stop(true, true); ( no. of true = no. of animation)
+
+	method chaining : $("#box").css("background","pink").slideUp().slideDown(2000); (multiple step)
+
+	has() : $("div").has("ul").css("background","pink") ( all div which has ul tag )
+
+	each() loop : $("li").each(function(){ $(this).css("color","red"); })
+
+	EVENT : 	pageX,pageY : $(document).mousemove(function(event){ $("#test").text(event.pageX); })  ( give x cordinate )
+					  :  $(document).mousemove(function(event){ var x=event.pageX; var y=event.pageY;  $("#box").text(x + " " + y); $("#box").offset({top:y,left:x}); }) ( box move with pointer)
+
+			event.type : $("#box").on("click dblclick mouseenter mouseleave",function(event){ $("#test").text(event.type);})
+			
+			event.which : $(document).on("keypress",function(event){ $("#test").text(event.which); }) ( ascii of key )
+
+			event.taget : ( tag like h2 p ul )
+			event.preventDefault : ( stop default )
+			event.stopPropagation : ( if you select button of div, div automatically selected )
+			event.data : 

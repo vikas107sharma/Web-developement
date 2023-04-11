@@ -1,0 +1,64 @@
+SQL :
+
+	https://sqliteonline.com/       ( online ide )
+
+	CREATE TABLE ( SQL SCHEMA ) :   CREATE TABLE products (
+                      				id INT NOT NULL,
+                      				name STRING,
+                      				price MONEY,
+                      				PRIMARY KEY (id)
+                      			  ) 
+
+                      CREATE TABLE customers(
+                        id INT NOT NULL,
+                        first_name STRING,
+                        last_name STRING,
+                        address STRING,
+                        PRIMARY KEY (id)
+                        )
+
+
+	INSERT INTO : 		INSERT INTO products
+					VALUES (1,"VIKAS",2.5)
+
+	
+	SQL SELECT ( READ ) :   SELECT * FROM products               ( * -> show everything )
+					    SELECT name,price FROM products
+					    SELECT * FROM products WHERE id>=2       ( WHERE id>=2 -> show everything with id >=2 )
+
+
+	UPDATE :         UPDATE products
+                      SET price=0.8
+                      WHERE id=2;
+
+	ALTER ( add, delete, modify columns ) :      ALTER TABLE products
+										add stock int
+
+	
+	UPDATE :   DELETE FROM products
+			 WHERE id=3;
+
+	
+	RELATIONSHIP :     CREATE TABLE orders (
+                          id INT NOT NULL,
+                          order_number INT,
+                          customer_id INT,
+                          product_id INT,
+                          PRIMARY KEY (id)
+                          FOREIGN KEY (customer_id) REFERENCES customers(id)
+                          FOREIGN KEY (product_id) REFERENCES products(id)
+                        )
+
+
+	INNER JOIN :     SELECT orders.order_number, customers.first_name,customers.last_name,customers.address    
+                      FROM orders																				
+                      INNER JOIN customers ON orders.customer_id = customer_id
+	
+	INNER JOIN MULTIPLE TABLES:     SELECT orders.order_number, customers.first_name, customers.last_name, customers.address,products.name,products.stock
+                                     FROM ((orders
+                                     INNER JOIN customers ON orders.customer_id = customer_id)
+                                     INNER join products ON orders.product_id=product_id);
+				( SELECT -> columns will show )
+				( FROM -> table1    INNER JOIN -> table2 )
+				( ON -> with link customer_id from orders with customer_id of customers table )
+

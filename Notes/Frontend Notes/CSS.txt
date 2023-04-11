@@ -1,0 +1,123 @@
+CSS :
+
+	websites : 
+		shape : bennettfeely.com
+	
+	selector : ul#menu li{ }
+	selecting last element : .item:last-child { border-bottom: 0;}
+	pseudo selectors ->  ::placeholder { color: grey; opacity: 1;}
+
+	checked para ->  input:checked+p { text-decoration: line-through; text-decoration-color: #A683E3;}	
+	
+
+	parent div: {display:flex} -> inside div: {align-self: center; margin: auto}
+	div : { top: 50%; left: 50%; margin: -150px}
+
+	.box img{ width:100%; object-fit:cover (/contain / none) }  (responsive )
+	
+	Border : 2px solid/dotted/dashed black , border-radius: top right bottom left ,
+	padding : top right bottom left 
+	line height : used as padding in text
+	min/max : min-height: 40px; max-height: 100px; (given to a div to fit text)
+	box-sizing : border-box (width does not change after padding or border)
+
+	overflow : hidden , scroll/ auto
+
+	box-shadow : left bottom blur spread color ( 2px 2px 5px 10px orange) ( use -left for right ( -2px .......) )
+				.pressed { box-shadow: 0 3px 4px 0 #DBEDF3; opacity: 0.5;}
+
+	font : (size) px , 0.5em ( half of parent ) , 0.5rem (half of browser root font size) , 50% (50% of parent ) , line height, font-wieght (bold/ normal / bolder ) , font-varient: small-caps ( small letters seems caitalize ) , 
+
+	text : text-align, text-align: justify (fill div),  text-transform: lowercase,  word-spacing, letter-spacing, 
+
+	text-decoration : none , underline red dotted 10px, line-through,
+
+	word-wrap : break-word, 
+
+	text-shadow : h-shadow v-shadow blur-radius color (2px 2px 5px orange)  
+
+	column : count (3) , rule (2px solid red)  , gap,  
+
+	list-stylr-image: url(../)
+
+	background-size: cover , -image : url(../) , use color: transparent and background-image and background-clip: text to show image on text
+	background : linear-gradiant(45deg,red,yellow) , radial-gradiant(circle,red 5%,yellow 15%)
+	background-blend: screen (/overlay/darken/hue)  (use to blend bg linear gradiant and bg image)
+
+	image : filter: brightness(50%) / contrast() / blur() ,  drop-shadow(8px 8px 10px red)
+
+	display : none / inline / block (use for margin and padding in a and span tag) / inline-block / list (use as list) 
+
+	visibility : hidden , collapse
+
+	position : relative (relative to parent div/original position ) , absolute (z-index outside), fixed, sticky,  
+
+	media : @media screen and (max-width: 900px) { } 
+	cursor: wait/ cell/ help/ pointer /crosshair/zoom-in
+
+	variable :  :root{ --myColor:red; --p_font: verdana; } , #menu{ background: var(--myColor); }
+	calc : width: calc(50% - 40px)
+
+	clip-path : circle (30% at 30% 50%) // (radius at x-axis y-axis)   
+	shape-outside : circle (30% at 30% 50%) // (radius at x-axis y-axis)
+	shape-margin : 20px 
+
+	transition-property: width,
+	transition-duration: 2s,
+	transition-timing-property : ease (/ ease-in / step(4) ) 
+	transiton-delay: 1s,
+	transition : all 2s ease 1s
+
+	transform : rotate(30deg), skewX(30deg), scale(2) {size becomes double}, translate(30px)
+	transform-origin : left top, 
+
+	transform:perspective(800px) rotateX(30deg); {alse rotateY() , rotateZ(),  scale3d(), transform3d(), 
+	transform-origin: right centre;
+
+	perspective-origin: top left; (use in parent div)
+     perspective: 800px;
+
+	transform-style: preserve-3d; (use in parent div)
+     transform: rotateY(30deg);
+     
+	backface-visibility: hidden;
+
+	animation: name duration timing-function delay iteration-count direction fill-mode;
+	animation: sample 2s infinite alternate; (name duration count direction)
+	@keyframes sample{
+            0%{ border-radius: 0; }
+            100%{ border-radius: 50%; }
+     }
+	
+	user-select: all (select all text in div by single click)
+	
+	border-image: source slice width outset repeat
+	border-image: url(images/bg.png) 21 / 15px / 5px / round ;
+	border-image: linear-gradient(red,yellow) 25; 
+	websete , www.border-image-generetor.com
+
+	selectors : * (uiversal selector) , .box p {} , div p span {} , img[title="flower"], input[type="radio"], a[href$=".png"] {} (select all href consisting png), a[href*="sunflower"]{} (select all href containing sunflower)
+
+	pseudo class : ul a:visited ( hover, visited, active, link) {color:red}, input[type="radio"]:checked +label { box-shadow: 0 0 0 3px red } , input:in-range{ background: yellow } input:out-of-range{ background: red } div-> input -> min="10" max="100" , <div></div> div:empty {border 3px solid red} (div should be empty ,used as hr ) ,li:nth-child(2n) {} (select every even child)
+	pseudo element:   h1::after{content: ""; background: yellow; display: block; width: 100%; height: 5px ;} ,ul:hover::after{content: "Secret Found";background: greenyellow;}
+        
+	pseudo element: p::first-letter {font-weight: bold} , p::selection{ background : red, color : white} , 
+	
+	counter : counter-reset , counter(), counter-increment,  ul{list-style: none;counter-reset: my-counter 0;} li::before{content: "Chapter " counter(my-counter) " : " ;counter-increment:my-counter 1;}
+
+	import : @import "color.css" , 
+
+	flow-root: parent-> diaplay : flow-root -> child -> float: left , 
+
+	Grid (2D) : display: grid, grid-template-columns: 50% 50%  ( or 1fr 1fr or repeat(2,1fr)) ; grid-gap: 5px; grid-auto-rows: 80px; (spanning) grid-column: 1/3;  grid-row: 1/3; grid-template-rows: repeat(3, minmax(100px,min-content)); ,grid-template-rows: [header-start]100px [hrader-end content-start] 60px [content-end footer-start] 40px [footer-end];
+		: vertical alignment: container -> align-items: center (or start,end,stretch)
+		: horizontal alignment: container-> justify-items : center (or start,end,stretch) , items-> justify-self: center,
+		: horizontal alignment: container-> justify-content : center (or space-around,space-between, start,end,stretch) , items-> justify-self: center,
+		: vertical alignment: container -> align-content: center (or start,end,stretch)
+		: order: 4; 
+
+	Flex (1D) : flex-direction: column ( row / row-reverse) , flex-wrap: wrap ( set only width or height) , flex-flow: column wrap (shorthand) , 
+	     container->	horizontal alignment : justify-content: center (space-around, flex-start, flex-end, space-between, space-evnly)
+		container->	vertical-alignment : align-items: center (flex-start, baseline) (items align in their small box) alig-self: ....
+									 align-content: ......... ( align in container ) , 
+		item-> order: 2; flex-grow: 2 ( item size twice), flex-basis: 200px, flex-grow: 2, flex-shrink: 2, , alig-self : .... ,

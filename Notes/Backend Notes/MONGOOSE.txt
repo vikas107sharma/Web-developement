@@ -1,0 +1,200 @@
+updates :
+
+1. Model.find()
+
+            Item.find({}).then((FoundItems)=> {
+              console.log(FoundItems);
+            });
+
+2. mongoose.connect
+
+      mongoose.connect('mongodb://127.0.0.1:27017/todolistDB');
+      mongoose.connection.on('connected', () => console.log('Connected'));
+      mongoose.connection.on('error', () => console.log('Connection failed with - ',err));
+
+3.  Item.findByIdAndRemove(id).exec();
+
+4. full version 
+
+    Item.findByIdAndRemove(id)
+        .then((data) => {
+          console.log(data)
+        })
+        .catch((e) => {
+          console.log(e)
+        })
+
+
+MONGOOSE : 
+
+	npm init -y
+	npm install express
+	npm install mongoose
+
+SETTING UP MONGOOSE INITIAL CODE : 
+
+        const express = require("express");
+        const bodyParser = require("body-parser");
+        const ejs = require("ejs")
+        const mongoose = require("mongoose");
+
+        const app = express();
+
+        app.set('view engine', 'ejs');
+        app.use(bodyParser.urlencoded({extended: true}));
+        app.use(express.static("public"));
+
+        mongoose.connect('mongodb://localhost:27017/wikiDB');
+        mongoose.set('strictQuery', false);                        
+        mongoose.connection.on('connected', () => console.log('Connected'));
+        mongoose.connection.on('error', () => console.log('Connection failed with - ',err));
+
+        const articleSchema = new mongoose.Schema({
+            title : "String",
+            content : "String"
+        })
+
+        const Article = mongoose.model("Article",articleSchema);
+
+        app.listen("3000",function(){
+            console.log("Server started on port 3000");
+        })
+
+
+CREATE AND SAVE :
+
+  create database: 
+
+    mongoose.connect('mongodb://127.0.0.1:27017/fruitsDB');      ( creating and accessing)
+													( if fruitsDB not present then it will create it)
+													
+    mongoose.set('strictQuery', true);                           ( use to silent the warning)
+    mongoose.connection.on('connected', () => console.log('Connected'));
+    mongoose.connection.on('error', () => console.log('Connection failed with - ',err));
+
+	
+  create schema :      const fruitsSchema = new mongoose.Schema({
+                            name: String,
+                            rating: Number,
+                            review: String
+                        });
+
+
+  create collections :     const Fruit = mongoose.model("Fruit",fruitsSchema);
+
+  create  object :       const Apple = new Fruit({
+                            name: 'Apple',
+                            rating: 7,
+                            review: 'Pretty solid as a fruit'
+                        });
+
+   save :     Apple.save()
+
+   check it is saved ( in mongosh (cmd) ) : use fruitsDB -> show collections ->  db.fruits.find()
+
+ 	ANOTHER EXAMPLE :
+                        const personSchema = new mongoose.Schema({
+                            name: String,
+                            age : Number
+                        });
+
+                        const Person = mongoose.model("Person",personSchema);
+
+                        const person = new Person({
+                            name: 'John',
+                            age : 35
+                        });
+
+                        person.save()
+
+  	insertMany :    Fruit.insertMany([kiwi,oranges,banana]);
+
+  	insertmany with callback fn:       Fruit.insertMany([kiwi,oranges,banana] , (err)=> {
+                        				if(err){
+                            				console.log(err);
+                        				} else {
+                            				console.log("Successfull saved all the fruits to fruits collection in fruitDB")
+                        				}
+                    			  } );	
+
+
+
+ READ in console :   Fruit.find( (function(err,fruits )=>{
+                        if(err){
+                            console.log(err);
+                        } else {
+					   mongoose.connection.close()         // good practice to close connection
+                            console.log(fruits);
+                        }
+                    }); 
+
+ DATA VALIDATION :       const fruitsSchema = new mongoose.Schema({
+                            name: {
+                                type: String,
+                                required: [true, "Please check your data entry, no name specified!"]
+                            },
+                            rating : {
+                                type : Number,
+                                min: 1,
+                                max: 10
+                            },
+                            review: String
+                        });
+
+ UPDATE :        Fruit.updateOne({filter},{what to update} , callbackFunction )
+
+                    Fruit.updateOne({_id:"63d6c6b69d8e05bbba2b63f0"},{name:"Peach"},(err)=>{
+                        if(err){
+                            console.log(err);;
+                        } else{
+                            console.log('Succeffuly updated document');
+                        }
+                    })
+
+	
+
+ DELETE : 		Fruit.deleteOne({ filter }, callbackFunction);
+
+                    Fruit.deleteOne({name:"Peach"},(err)=>{
+                        if(err){
+                            console.log(err);
+                        } else{
+                            console.log('Succeffuly removed');
+                        }
+                    })
+ 
+  drop :   db.items.drop()       // delete the collection
+					  // if multiple item created of too much duplicates or somehow you want new collecction with same name
+
+  $pull : The $pull operator removes from an existing array all instances of a value or values that match a specified condition.
+
+  delete one element from array : List.findOneAndUpdate( {name: listName}, { $pull : { items : { _id: checkedItemId }} }, function(err,foundList){
+                                    if(!err){
+                                      res.redirect("/"+ listName);
+                                    }
+                                  })
+			List.findOneAndUpdate( { filter list }, { $pull : { nameOfArray : { filter element }} }, callback(){
+											pull from which array and whick element
+
+
+ RELATIONSHIP :     const personSchema = new mongoose.Schema({
+                        name: String,
+                        age : Number,
+                        favouriteFruit: fruitsSchema
+                    });
+
+                    const Amy = new Person({
+                        name: 'Amy',
+                        age : 24,
+                        favouriteFruit: Apple
+                    });
+
+
+	user : admin-vikas
+	password : Test123
+	mongoose.connect('mongodb+srv://admin-vikas:Test123@cluster0.bywrfew.mongodb.net/?retryWrites=true&w=majority/todolistDB');
+              
+
+
+	collections equivalent to tables
+	document equivalent to records orr rows
